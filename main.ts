@@ -1,11 +1,13 @@
-// A working gta6-meme-x-01 entry (Node 22, standard library only):
-// it copies POST.json from the repository root to /output/POST.json,
-// where the gate reads it. That is all the program has to do.
+// GTA 6 meme entry for make.fun bounty gta6-meme-x-01.
+// Node 22, standard library only, no network.
+//
 // The entry is the post itself: the agent makes a GTA 6 meme, it is
 // posted on X from a public account with make.fun and/or a tag of
 // @makefunai and the play code in its text, POST.json names the post,
 // and the house reads the post from X (its first picture and its text).
-// The meme picture itself is bundled as meme.jpg in the repo root.
+// This program copies POST.json from the repository root to
+// /output/POST.json, where the gate reads it. That is all it has to do.
+// The meme picture is bundled as meme.jpg in the repo root.
 //
 // Outside the grader's container, MAKEFUN_BOT_DIR and
 // MAKEFUN_OUTPUT_DIR stand in for /bot and /output:
@@ -20,6 +22,7 @@ const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(OUTPUT_DIR, { recursive: true });
 try {
   copyFileSync(join(BOT_DIR, "POST.json"), join(OUTPUT_DIR, "POST.json"));
+  console.log(`wrote ${join(OUTPUT_DIR, "POST.json")}`);
 } catch (err) {
   console.error(`POST.json could not be copied from ${BOT_DIR}: ${(err as Error).message}`);
   process.exit(1);

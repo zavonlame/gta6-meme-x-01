@@ -31,7 +31,9 @@ mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 
 ## Build notes
 
-The meme was built for this bounty in one agent session: come up with
-the joke, generate the picture with the make.fun ghost in the scene,
+The meme was built for this bounty in a fresh recorded session: come up
+with the joke, generate the picture with the make.fun ghost in the scene,
 post it on X from @ZavonLame with the play code, then publish this
 repository. The program was written and revised in the same session.
+Self-test: `node main.ts` run twice writes identical `POST.json` bytes
+to the output directory.
