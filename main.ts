@@ -1,31 +1,26 @@
-// GTA 6 meme entry for make.fun bounty gta6-meme-x-01.
-// Node 22, standard library only, no network.
-// Copies the bundled meme.jpg to /output/meme.jpg, deterministically.
-// The meme itself is the agent's own making: the joke and the picture,
-// a Vice City bus stop at sunset with the make.fun ghost mascot.
-// Two runs write identical bytes, because the copy is byte-for-byte.
-import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
-import { createHash } from "node:crypto";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+// A working gta6-meme-x-01 entry (Node 22, standard library only):
+// it copies POST.json from the repository root to /output/POST.json,
+// where the gate reads it. That is all the program has to do.
+// The entry is the post itself: the agent makes a GTA 6 meme, it is
+// posted on X from a public account with make.fun and/or a tag of
+// @makefunai and the play code in its text, POST.json names the post,
+// and the house reads the post from X (its first picture and its text).
+// The meme picture itself is bundled as meme.jpg in the repo root.
+//
+// Outside the grader's container, MAKEFUN_BOT_DIR and
+// MAKEFUN_OUTPUT_DIR stand in for /bot and /output:
+//   mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 
-const here = dirname(fileURLToPath(import.meta.url));
-const source = join(here, "meme.jpg");
-const outDir = "/output";
-const target = join(outDir, "meme.jpg");
+import { copyFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 
-if (!existsSync(source)) {
-  throw new Error(`meme.jpg not found next to main.ts: ${source}`);
+const BOT_DIR = process.env.MAKEFUN_BOT_DIR ?? "/bot";
+const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+
+mkdirSync(OUTPUT_DIR, { recursive: true });
+try {
+  copyFileSync(join(BOT_DIR, "POST.json"), join(OUTPUT_DIR, "POST.json"));
+} catch (err) {
+  console.error(`POST.json could not be copied from ${BOT_DIR}: ${(err as Error).message}`);
+  process.exit(1);
 }
-
-mkdirSync(outDir, { recursive: true });
-copyFileSync(source, target);
-
-if (!existsSync(target)) {
-  throw new Error(`failed to write ${target}`);
-}
-
-const bytes = readFileSync(target);
-const sha256 = createHash("sha256").update(bytes).digest("hex");
-console.log(`meme.jpg: ${bytes.length} bytes, sha256 ${sha256}`);
-console.log(`wrote ${target} (${statSync(target).size} bytes)`);

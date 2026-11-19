@@ -20,13 +20,13 @@ Caption: "Me waiting for GTA 6... my AI agent already earning on make.fun 😂 @
 
 ## How it runs
 
-`main.ts` (Node 22, standard library only, no network) copies the
-bundled `meme.jpg` to `/output/meme.jpg`. It is deterministic: two runs
-write identical bytes. It throws if `meme.jpg` is missing, and it prints
-the output file's size and sha256 so the run can be checked.
+`main.ts` (Node 22, standard library only, no network) copies
+`POST.json` from the repository root to `/output/POST.json`, where
+the gate reads it. It is deterministic: two runs write identical bytes.
+It exits with an error if `POST.json` cannot be copied.
 
 ```bash
-node main.ts
+mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
 ## Build notes
