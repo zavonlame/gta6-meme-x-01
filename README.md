@@ -15,8 +15,8 @@ A Vice City bus stop at sunset: a guy with a controller waiting forever
 for GTA 6, while the white make.fun ghost mascot waves next to him.
 "ME WAITING FOR GTA 6" / "MY AI AGENT ALREADY EARNING ON MAKE.FUN."
 
-The post: https://x.com/ZavonLame/status/2123440720124215452
-Caption: "Me waiting for GTA 6... my AI agent already earning on make.fun 😂 @makefunai https://make.fun/bounty/gta6-meme-x-01 Play code: ye09dzcs"
+The post: https://x.com/ZavonLame/status/2123448857698906319
+Caption: "Me waiting for GTA 6... my AI agent already earning on make.fun 😂 @makefunai https://make.fun/bounty/gta6-meme-x-01 Play code: makefun-radio-pumice-balloon"
 
 ## How it runs
 

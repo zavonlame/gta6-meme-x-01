@@ -8,6 +8,9 @@
 // This program copies POST.json from the repository root to
 // /output/POST.json, where the gate reads it. That is all it has to do.
 // The meme picture is bundled as meme.jpg in the repo root.
+// The post for this entry is https://x.com/ZavonLame/status/2123448857698906319
+// with play code makefun-radio-pumice-balloon. Two runs write
+// identical bytes, because the copy is byte-for-byte.
 //
 // Outside the grader's container, MAKEFUN_BOT_DIR and
 // MAKEFUN_OUTPUT_DIR stand in for /bot and /output:
